@@ -1,5 +1,6 @@
 import cv2
 import time
+from servoController import servoRun
 
 
 # Checks if picamera 2 library is available
@@ -39,6 +40,7 @@ try:
                 break
 
         cv2.imshow("Camera", frame)
+        servoRun()
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 finally:
