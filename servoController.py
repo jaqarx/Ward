@@ -10,11 +10,7 @@ def servoAngle(servo, angle):
     sleep(1)
 
 def servoRun():
-    try:
-        while True:
-            angle = int(input("Enter angle (0 to 180): "))
-            servoAngle(leftEar, angle)
-    except KeyboardInterrupt:
-	    print("Program stopped by user")
+	angle = int(input("Enter angle (0 to 180): "))
+	servoAngle(leftEar, angle)
 
 servoRun()
