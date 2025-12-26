@@ -1,6 +1,8 @@
 import cv2
 import time
-from servoController import servoRun
+from gpiozero import AngularServo
+from time import sleep
+from servoBasic import servoAngle, leftEar
 
 
 # Checks if picamera 2 library is available
@@ -40,7 +42,9 @@ try:
                 break
 
         cv2.imshow("Camera", frame)
-        servoRun()
+        if cv2.waitKey(1) & 0xFF == ord('u'):
+            servoAngle(leftEar, 90)
+
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 finally:
