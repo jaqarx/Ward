@@ -1,15 +1,38 @@
 import cv2
 import time
-from gpiozero import AngularServo
+from adafruit_servokit import ServoKit
 from time import sleep
-from servoMovement import servoAngle, servoReset, leftEar, rightEar, horiServo, vertServo
+from servoMovementServoKit import happyEars, neutralEars, sadEars, panServo, tiltServo, neutralStance
 from picamera2 import Picamera2
 
+# Ensures robot is in a known pose
+neutralStance()
+panAngle = 90
+tiltAngle = 130
+
+# Tuning constant
+KP = 0.015
+
+def track_face(errorX, errorY):
+
+    # Set to global so that these variables' values are stored outside of the function
+    global panAngle, tiltAngle
+
+    # Adjusts angle slightly proportional to the error
+    panAngle -= KP * errorX
+    tiltAngle -= KP * errorY
+
+    # Ensures the angles never exceed 180 degrees
+    panAngle = max(0, min(180, panAngle))
+    tiltAngle = max(0, min(180, tiltAngle))
+
+    # Set the pan and tilt servos to use the adjusted angles 
+    panServo.angle = panAngle
+    tiltServo.angle = tiltAngle
+
+
 # Tests camera livestreaming with servo angle when key is pressed
-
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-servoReset()
-
 
 # Checks if picamera 2 library is available
 
@@ -19,7 +42,7 @@ servoReset()
 cam = Picamera2()
 
 # Sets up camera livestream configuration (ex. color format and size of the frame)
-config = cam.create_preview_configuration(main={"format": "RGB888", "size": (640, 480)})
+config = cam.create_preview_configuration(main={"format": "RGB888", "size": (960, 720)})
 cam.configure(config)
 cam.start()
 time.sleep(2)  # Allow camera to warm up and adjust white balance
@@ -40,8 +63,7 @@ try:
 
         if len(faces) > 0:
             # Face detected - ears up!
-            servoAngle(leftEar, -30)
-            servoAngle(rightEar, 30)
+            happyEars()
 
             # Draw rectangle around first face
             # x - x coordinate of top left corner
@@ -74,17 +96,11 @@ try:
             # negative means shift up
 
             # Move camera towards face
-            if errorX > 0:
-                horiServoAngle = 
-                # need to figure out the angles
-                servoAngle(horiServo, 0) # adjust later
-            if errorY > 0:
-                servoAngle(vertServo, 0) # adjust later
+            track_face(errorX, errorY)
 
         else:
             # No face - ears down (sad) 
-            servoAngle(leftEar, 50)
-            servoAngle(rightEar, -60)
+            sadEars()
 
             cv2.putText(frame, "No face", (10, 30),
                        cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
