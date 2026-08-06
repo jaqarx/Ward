@@ -1,15 +1,14 @@
-# **Frequently Answered Questions**
+# **Frequently Asked Questions**
 
 | Table of Contents | Related Documents |
 |---|---|
-| [What can the robot do?](#what-can-the-robot-do) | [Building a Creature-like, Face-Detection Robot Using Raspberry Pi (Home Page)](README.md) |
+| [What can the robot do?](#what-can-the-robot-do) | [Building a Creature-like, Face-Detection Robot Using Raspberry Pi (Home Page)](../README.md) |
 | [Can the robot identify who a face belongs to?](#can-the-robot-identify-who-a-face-belongs-to) | [Required Materials](required-materials.md) |
 | [Does the robot work in low light?](#does-the-robot-work-in-low-light) | [Setting up the Hardware](hardware-set-up.md) |
 | [Can the robot detect faces through glasses or a mask?](#can-the-robot-detect-faces-through-glasses-or-a-mask) | [Setting up the Raspberry Pi and the Raspberry Pi Camera](rasp-pi-set-up.md) |
 | [Why can't the robot detect faces from the side?](#why-cant-the-robot-detect-faces-from-the-side) | [Setting up the Robot's Vision](robot-vision.md) |
 | [Can I change the angle the “ear” servos move to?](#can-i-change-the-angle-the-ear-servos-move-to) | [Setting Up the “Ear” Motors](ear-motors.md) |
 | [Why is the camera feed slow or laggy?](#why-is-the-camera-feed-slow-or-laggy) | |
-| [Why do the ears jitter or twitch when nothing is happening?](#why-do-the-ears-jitter-or-twitch-when-nothing-is-happening) | |
 | [Can I use a different servo, camera, or Raspberry Pi model for this project?](#can-i-use-a-different-servo-camera-or-raspberry-pi-model-for-this-project) | |
 
 ## **What can the robot do?**
@@ -56,12 +55,6 @@ Yes. The angles the ears move to are set by the values passed to servoAngle( ) i
 ## **Why is the camera feed slow or laggy?**
 
 The Raspberry Pi processes the camera feed frame by frame, running face detection on every single frame. With needing to process several frames per second, this process can be intense for a Raspberry Pi, which has lower specifications than the average laptop. If you experience lag, try reducing the resolution the camera captures at (the default is 640×480 pixels). 
-
----
-
-## **Why do the ears jitter or twitch when nothing is happening?**
-
-Jitter is usually caused by electrical noise passing through the servo signal wire, which happens because electricity doesn’t flow smoothly. Smaller electronics are especially susceptible to noise. Jitter due to noise can be mitigated by adding small 220 - 470 ohm resistors, which help dampen the noise passing through to the signal wire.
 
 ---
 
