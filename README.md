@@ -1,4 +1,4 @@
-# **Building a Creature-like, Face-Detection Robot Using Raspberry Pi**
+# **Building a Creature-like, 2-DOF Face-Tracking Robot Using Raspberry Pi**
 
 ## **Note**
 
