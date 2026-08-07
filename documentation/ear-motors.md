@@ -2,12 +2,12 @@
 
 | Table of Contents | Related Documents |
 |---|---|
-| [Overview](#overview) | [Building a Creature-like, Face-Detection Robot Using Raspberry Pi (Home Page)](README.md) |
+| [Overview](#overview) | [Building a Creature-like, Face-Detection Robot Using Raspberry Pi (Home Page)](../README.md) |
 | [Installing the Required Packages](#installing-the-required-packages) | [Required Materials](required-materials.md) |
 | [Setting Up the “Ear” Movement Script](#setting-up-the-ear-movement-script) | [Setting up the Hardware](hardware-set-up.md) |
 | [Testing the Program](#testing-the-program) | [Setting up the Raspberry Pi and the Raspberry Pi Camera](rasp-pi-set-up.md) |
 | [Integrating Servo Movement into the Vision](#integrating-servo-movement-into-the-vision) | [Setting up the Robot's Vision](robot-vision.md) |
-| | [Frequently Answered Questions](faq.md) |
+| | [Frequently Asked Questions](faq.md) |
 
 ## **Overview**
 

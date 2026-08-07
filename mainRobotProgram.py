@@ -11,8 +11,12 @@ panAngle = 90
 tiltAngle = 130
 
 # Tuning constant
+# Make smaller to reduce overshoot and oscillation
+# Make larger to increase responsiveness
 KP = 0.015
 
+# Function to track face by adjusting pan and tilt angles of the servos based on 
+# the error between the center of the detected face and the center of the camera frame
 def track_face(errorX, errorY):
 
     # Only attempt to minimize error if error is larger than 70 pixels
@@ -50,7 +54,7 @@ cam.configure(config)
 cam.start()
 time.sleep(2)  # Allow camera to warm up and adjust white balance
 
-
+# Main feedback loop for face detection and tracking
 try:
     while True:
         frame = cam.capture_array()
@@ -89,14 +93,15 @@ try:
             errorX = centerRectX - (frameWidth / 2)
             errorY = centerRectY - (frameHeight / 2)
 
-            #there needs to be a direction
-            # for x 
+            # Interpret error values - x-axis
             # positive means shift to the left
             # negative means shift to the right
 
-            # for y
+            # Interpret error values - y-axis
             # positive means shift down
             # negative means shift up
+
+            # Above logic is utilized in the track_face function to adjust the pan and tilt angles of the servos
 
             # Move camera towards face
             track_face(errorX, errorY)

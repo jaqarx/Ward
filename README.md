@@ -1,13 +1,29 @@
-# **Building a Creature-like, Face-Detection Robot Using Raspberry Pi**
+# **Building a Creature-like, 2-DOF Face-Tracking Robot Using Raspberry Pi**
 
-| Table of Contents | Related Documents |
+## **Note**
+
+This project is a work-in-progress and is constantly updating! As it currently stands, the documentation is **OUTDATED** and is
+in the process of being updated for current 2-DOF functionalities I've recently implemented. 
+
+Currently, these pages are outdated:
+ - [Setting up the Hardware](documentation/hardware-set-up.md)
+ - [Setting up the Robot's Vision](documentation/robot-vision.md)
+ - [Setting up the "Ear Motors"](documentation/ear-motors.md)
+
+I hope to update this project to include the following in the near future:
+ - Add capacitive touch sensor to detect when the robot is being pet
+ - Add head-tilt servo to enable simple emotive responses (confusion, "happy" wiggle) triggered by touch input
+ - Create a duplicate working version of the project using ROS 2
+
+## **Table of Contents**
+| Section | Related Documents |
 |---|---|
-| [Introduction](#introduction) | [Required Materials](required-materials.md) |
-| [Robotics Introduction](<#robotics-introduction>) | [Setting up the Hardware](hardware-set-up.md) |
-| [Technical Details](<#technical-details>) | [Setting up the Raspberry Pi and the Raspberry Pi Camera](rasp-pi-set-up.md) |
-| **[Hardware](#hardware)** | [Setting up the Robot's Vision](robot-vision.md) |
-| &nbsp;&nbsp;[Sensors](#sensors) | [Setting up the "Ear Motors"](ear-motors.md) |
-| &nbsp;&nbsp;[Computer](#computer) | [Frequently Answered Questions](faq.md) |
+| [Introduction](#introduction) | [Required Materials](documentation/required-materials.md) |
+| [Robotics Introduction](<#robotics-introduction>) | [Setting up the Hardware](documentation/hardware-set-up.md) |
+| [Technical Details](<#technical-details>) | [Setting up the Raspberry Pi and the Raspberry Pi Camera](documentation/rasp-pi-set-up.md) |
+| **[Hardware](#hardware)** | [Setting up the Robot's Vision](documentation/robot-vision.md) |
+| &nbsp;&nbsp;[Sensors](#sensors) | [Setting up the "Ear Motors"](documentation/ear-motors.md) |
+| &nbsp;&nbsp;[Computer](#computer) | [Frequently Asked Questions](documentation/faq.md) |
 | &nbsp;&nbsp;[Chassis](#chassis) | |
 | &nbsp;&nbsp;[Motors](#motors) | |
 | **[Software](#software)** | |
@@ -17,12 +33,11 @@
 
 ## **Introduction**
 
-I created this project to teach myself the basics of computer vision, practice hardware and software integration, and express my love for robotics and creatures. This guide is designed for beginner to intermediate programmers who want to gain hands-on skills by building their own version of this robot.
+I created this project to teach myself the basics of computer vision, practice hardware and software integration, and express my love for everything robotics, creatures, and sci-fi. This guide is designed for beginner to intermediate programmers who want to gain hands-on skills by building their own version of this robot.
 
-<img src="https://media.licdn.com/dms/image/v2/D562DAQEEc8HmvpzlgA/profile-treasury-image-shrink_1280_1280/B56Zt8H0kvGsAQ-/0/1767313991004?e=1774497600&v=beta&t=Nsj0xq6YUQ1kRjxhBpZy52iLfCEP23t_QDX8e9C38gg" alt="Robot project" width="400">
+<img src="documentation/robot.jpg" alt="Image of robot" width="40%">
 
 **What you’ll need to know:**
-
 * Basic Python programming (know what variables, functions, and loops are)
 * How to create and edit files in Visual Studio Code
 * Comfortable running commands in the terminal
