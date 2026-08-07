@@ -15,20 +15,23 @@ KP = 0.015
 
 def track_face(errorX, errorY):
 
-    # Set to global so that these variables' values are stored outside of the function
-    global panAngle, tiltAngle
+    # Only attempt to minimize error if error is larger than 70 pixels
+    if (abs(errorX) > 70 or abs(errorY) > 70):
 
-    # Adjusts angle slightly proportional to the error
-    panAngle -= KP * errorX
-    tiltAngle -= KP * errorY
+        # Set to global so that these variables' values are stored outside of the function
+        global panAngle, tiltAngle
 
-    # Ensures the angles never exceed 180 degrees
-    panAngle = max(0, min(180, panAngle))
-    tiltAngle = max(0, min(180, tiltAngle))
+        # Adjusts angle slightly proportional to the error
+        panAngle -= KP * errorX
+        tiltAngle -= KP * errorY
 
-    # Set the pan and tilt servos to use the adjusted angles 
-    panServo.angle = panAngle
-    tiltServo.angle = tiltAngle
+        # Ensures the angles never exceed 180 degrees
+        panAngle = max(0, min(180, panAngle))
+        tiltAngle = max(0, min(180, tiltAngle))
+
+        # Set the pan and tilt servos to use the adjusted angles 
+        panServo.angle = panAngle
+        tiltServo.angle = tiltAngle
 
 
 # Tests camera livestreaming with servo angle when key is pressed
