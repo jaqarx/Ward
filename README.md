@@ -5,24 +5,26 @@
 This project is a work-in-progress and is constantly updating! As it currently stands, the documentation is **OUTDATED** and is
 in the process of being updated for current 2-DOF functionalities I've recently implemented. 
 
-Currently, these pages are outdated:
+Currently, these pages are outdated (including some conceptual content in this README):
  - [Setting up the Hardware](documentation/hardware-set-up.md)
  - [Setting up the Robot's Vision](documentation/robot-vision.md)
- - [Setting up the "Ear Motors"](documentation/ear-motors.md)
+ - [Setting up the Robot's servos](documentation/servo-setup.md)
 
 I hope to update this project to include the following in the near future:
  - Add capacitive touch sensor to detect when the robot is being pet
  - Add head-tilt servo to enable simple emotive responses (confusion, "happy" wiggle) triggered by touch input
  - Create a duplicate working version of the project using ROS 2
+ - Explore gesture recogition and sequence corresponding "animations" to each gesture
 
 ## **Table of Contents**
+
 | Section | Related Documents |
 |---|---|
 | [Introduction](#introduction) | [Required Materials](documentation/required-materials.md) |
 | [Robotics Introduction](<#robotics-introduction>) | [Setting up the Hardware](documentation/hardware-set-up.md) |
 | [Technical Details](<#technical-details>) | [Setting up the Raspberry Pi and the Raspberry Pi Camera](documentation/rasp-pi-set-up.md) |
 | **[Hardware](#hardware)** | [Setting up the Robot's Vision](documentation/robot-vision.md) |
-| &nbsp;&nbsp;[Sensors](#sensors) | [Setting up the "Ear Motors"](documentation/ear-motors.md) |
+| &nbsp;&nbsp;[Sensors](#sensors) | [Setting up the Robot's servos](documentation/servo-setup.md) |
 | &nbsp;&nbsp;[Computer](#computer) | [Frequently Asked Questions](documentation/faq.md) |
 | &nbsp;&nbsp;[Chassis](#chassis) | |
 | &nbsp;&nbsp;[Motors](#motors) | |
@@ -33,7 +35,7 @@ I hope to update this project to include the following in the near future:
 
 ## **Introduction**
 
-I created this project to teach myself the basics of computer vision, practice hardware and software integration, and express my love for everything robotics, creatures, and sci-fi. This guide is designed for beginner to intermediate programmers who want to gain hands-on skills by building their own version of this robot.
+I created this project to teach myself the basics of computer vision, practice hardware and software integration, learn industry-level robotics skills, and express my love for everything creatures and sci-fi. This guide is designed for beginner to intermediate programmers who want to gain hands-on skills by building their own version of this robot.
 
 <img src="documentation/robot.jpg" alt="Image of robot" width="40%">
 
@@ -50,7 +52,7 @@ What makes robots particularly interesting is when they take on life-like or cre
 
 ## **Technical Details**
 
-The project consists of two parts: hardware and software. The hardware side of this project consists of a simple assembly of parts that can be purchased online. The software side operates the robot’s vision used for facial detection as well as its “ears” used to signal that the robot can detect a face from live video feed.
+The project consists of two parts: hardware and software. The hardware side of this project consists of a simple assembly of parts that can be found in my CAD files [here](https://cad.onshape.com/documents/89cd369ef21127fd7299b2b1/w/98cd03dbaca4f82dab6a6156/e/31e971ed38c5ba3b7745d6cc). The software side operates the robot’s vision used for facial detection as well as its “ears” used to signal that the robot can detect a face from live video feed.
 
 **Through this project, you’ll be able to create a robot that can:**
 
@@ -73,7 +75,6 @@ For this project, the hardware can be broken into 4 main components: sensors, co
 
 Sensors allow robots to receive information about their physical environment. For this project, a camera module acts as the robot's "eyes," capturing live video feed to be checked for faces.
 
-
 #### **Computer**
 
 A computer is needed to receive input, process it, and send commands to other components, essentially acting as the brain. This project uses a Raspberry Pi, which is a small, affordable computer about the size of a credit card. It has GPIO (General Purpose Input/Output) pins, which are physical connectors that allow it to send electrical signals directly to other hardware components like motors and LEDs. In this project, the Raspberry Pi both runs the face-detection software and controls the servo motors.
@@ -90,7 +91,11 @@ The chassis is the physical frame of the robot. For this project, the chassis co
 
 ### **Software**
 
-For this project, the software can be broken into 2 main components: computer vision and motor actuation.
+For this project, there will be two versions of the codebase: one written with ROS 2 and one written with basic Python functions. ROS 2 is a Python library and framework widely used across robotics applications in industry, which is why I've tried to create a version of the codebase that utilizes it. 
+
+Any documentation found in the Ward/documentation folder will only pertain to the code written with basic Python functions. Documentation for the ROS 2 codebase will be written within the Ward/ros2-migration folder.
+
+For both versions of code, the software can be broken into 2 main components: computer vision and motor actuation.
 
 #### **Computer Vision**
 
